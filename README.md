@@ -1,2 +1,1 @@
-# OOSE
-INFO 3150 OOSE Project
+UI/UX Design Files
