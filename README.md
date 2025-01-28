@@ -1,2 +1,0 @@
-# OOSE
-INFO 3150 OOSE Project
