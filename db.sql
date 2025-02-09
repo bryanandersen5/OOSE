@@ -1,35 +1,33 @@
 -- Database creation
 CREATE DATABASE `Stock_Trading_Management_System`;
 
--- Select the database created
 USE `Stock_Trading_Management_System`;
 
-
--- Create table for ROLE
+-- Table for ROLE
 CREATE TABLE `ROLE` (
-	`id` INT AUTO_INCREMENT, /* STC! */
+	`id` INT AUTO_INCREMENT,
 	`name` VARCHAR(60) NOT NULL DEFAULT 0,
-	`permissions` TEXT NOT NULL /* Store as JSON array like '["read", "write"]' STC! */,
-	PRIMARY KEY (`id`) 
+	`permissions` TEXT NOT NULL /*Store as JSON array like '["read", "write"]'*/,
+	PRIMARY KEY (`id`)
 );
 
--- Add sample data to ROLE table
 INSERT INTO ROLE(name, permissions) 
 VALUES('admin', '["read", "write", "execute"]');
 
-
--- Add sample data to ROLE table
 INSERT INTO ROLE(name, permissions) 
 VALUES('trader', '["read"]');
 
--- Show ROLE table
 SELECT * FROM ROLE;
 
-
--- Create table for USER
+-- Table for USER
 CREATE TABLE `USER`  (
 	`username` VARCHAR(60) NOT NULL DEFAULT '',
-	`password` VARCHAR(60) NOT NULL DEFAULT'',
+	`password` VARCHAR(255) NOT NULL DEFAULT'',
+    `name` VARCHAR(60) NOT NULL DEFAULT'',
+    `email` VARCHAR(60) NOT NULL DEFAULT'',
+    `securityQuestion` VARCHAR(255) NOT NULL DEFAULT'',
+    `securityAnswer` VARCHAR(255) NOT NULL DEFAULT'',
+    `phoneNumber` VARCHAR(60) NOT NULL DEFAULT'',
     `role_id` INT,
 	PRIMARY KEY (`username`),
     FOREIGN KEY (role_id)
@@ -37,19 +35,15 @@ CREATE TABLE `USER`  (
 		ON UPDATE CASCADE ON DELETE CASCADE
 );
 
--- Add sample data to USER table
-INSERT INTO USER (username,password,role_id)
+INSERT INTO USER (username, password, name, email, securityQuestion, securityAnswer, phoneNumber)
 VALUES
-('JohnDoe','JohnInvest123','1'),
-('KevinNguyen,','InvestD123','2');
+('JohnDoe','JohnInvest123','John Doe', 'JohnDoe@email.com', 'Who are you?','John','6041234567'),
+('KevinNguyen,','InvestD123','Kevin Nguyen','KevinNguyen@email.com', 'Who are you?','Kevin','7789876543');
 
--- Show USER table
-SELECT * FROM TABLE;
+SELECT * FROM USER;
 
+DELETE FROM USER;
 
--- Some useful SQL commands
 SET SQL_SAFE_UPDATES = 0;
-
-DELETE FROM TABLE;
 
 DROP TABLE USER;
